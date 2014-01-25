@@ -15,3 +15,9 @@ function Creditsloc()  {
 window.location="../otherHtml/credits.html";
 
 }
+
+function Createloc()   {
+
+window.location="../otherHtml/create.html";
+
+}
