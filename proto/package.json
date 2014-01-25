@@ -1,0 +1,21 @@
+{
+  "name": "Coloriseum",
+  "version": "1.0.0",
+  "author": "T. Eynard, A. Monteiro, L. Leng, Q. Benaroche, F. Sintes, M. Gillet",
+  "main": "server",
+  "engines": {
+    "node": "0.10.25"
+  },
+  "scripts": {
+    "start": "server.js"
+  },
+  "dependencies": {
+    "express": "~3.4.5",
+    "connect": "~2.11.1",
+    "jade": "~0.35.0",
+    "browserify": "~3.24.1",
+    "socket.io-browserify": "~0.9.6",
+    "jquery-browserify": "~1.8.1",
+    "socket.io": "~0.9.16"
+  }
+}
