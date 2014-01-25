@@ -46,6 +46,10 @@ window.onload = function(e) {
 	targetX = event.x;
     targetY = event.y;
 	run();
+	img.onload = function(){
+					run();
+				};
+	img.src = 'LD_Coloriseum_1.jpeg'; // Set source path
 };
 
 // Math.pow(x,2)
