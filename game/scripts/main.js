@@ -33,8 +33,6 @@ require(   ["app", "world",
 			    gamepadManager.run();
 			    world.run();
 
-			    world.findGameObjectWithTag("player").move();
-
 				stats.end();
 
 				requestAnimationFrame(gameloop);

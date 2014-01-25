@@ -4,7 +4,6 @@ define(["world", "player"], function(world, Player) {
 
         init: function() {
           var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
-          console.log(gamepadSupportAvailable)
         },
 
         pollGamepads : function() {
@@ -18,6 +17,12 @@ define(["world", "player"], function(world, Player) {
 
         run : function() {
             this.pollGamepads();
+            this.checkGamepadConnect();
+            
+        },
+
+        checkGamepadConnect : function()
+        {
 
             for (var i = 0; i < this.gamepads.length; i++)
             {
@@ -28,8 +33,7 @@ define(["world", "player"], function(world, Player) {
                     if (this.gamepads[i].index === players[j].playerID)
                     {
                         playerExist = true;
-                    }
-                    
+                    }                    
                 }
 
                 if (!playerExist)
@@ -38,12 +42,35 @@ define(["world", "player"], function(world, Player) {
                         tag : "player",
                         id : world.gameObjects.length,
                         playerID : i,
-                        size : { x : 30, y : 30 }
+                        size : { x : 30, y : 30 },
+                        gamepad : this.gamepads[i]
                     }));
                     console.table(world.gameObjects);
                 }
             }
-        }
+        },
+
+/*        checkGamepadDisonnect : function() 
+        {
+            var players = world.findGameObjectsWithTag("player");
+            
+            for (var i = 0; i < players.length; i++)
+            {
+                var gamepadExist = false;
+                for (var j = 0; j < this.gamepads.length; j++)
+                {
+                    if (this.gamepads[j].index === players[i].playerID)
+                    {
+                        gamepadExist = true;
+                    }                    
+                }
+
+                if (!gamepadExist)
+                {
+                    world.gameObjects.splice(players[i].id, 1);
+                    console.table(world.gameObjects);
+                }
+            }
+        }*/
     }  
 });
-

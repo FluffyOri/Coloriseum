@@ -6,6 +6,7 @@ define(["app", "world"], function(app, world) {
         this.playerID = params.playerID;
         this.size     = params.size;
         this.speed    = 10;
+        this.gamepad  = params.gamepad;
 
         switch(this.id)
         {
@@ -41,18 +42,23 @@ define(["app", "world"], function(app, world) {
 
         this.render = function()
         {
-            app.ctx.fillStyle = "white";
+            app.ctx.fillStyle = this.color;
             app.ctx.fillRect(this.position.x, this.position.y, this.size.x, this.size.y);
         }
 
         this.move = function()
         {
-            this.position.x ++;
+            //console.log(this.gamepad.axes[0])
+            if (this.gamepad.axes[0] > 0.2 || this.gamepad.axes[0] < -0.2)
+                this.position.x += this.gamepad.axes[0] * this.speed;
+            if (this.gamepad.axes[1] > 0.2 || this.gamepad.axes[1] < -0.2) 
+                this.position.y += this.gamepad.axes[1] * this.speed;
         }
 
         this.update = function()
         {
             this.render();
+            this.move();
         }
     }
 
