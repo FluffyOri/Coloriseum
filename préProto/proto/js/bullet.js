@@ -1,4 +1,4 @@
-var Bullet = function(targetX,targetY,playerColor,playerId,bulletSpeed,playerId)
+Bullet = function(targetX,targetY,playerColor,playerId,bulletSpeed,playerId)
 {
 	this.id = playerId;
 	this.x = players[playerId].x + 10;

@@ -95,6 +95,7 @@ Player.prototype.move = function()
 		{
 			if(!this.shoot)
 		    {
+		    	//wtf js
 		        Player.prototype.shoot(this.fireSpeed,this.bulletSpeed,this.id,this.color,mouseTarget);
 		    }
 		}

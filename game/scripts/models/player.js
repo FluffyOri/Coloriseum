@@ -40,25 +40,43 @@ define(["app", "world"], function(app, world) {
             break;
         }
 
-        this.render = function()
-        {
-            app.ctx.fillStyle = this.color;
-            app.ctx.fillRect(this.position.x, this.position.y, this.size.x, this.size.y);
-        }
-
-        this.move = function()
-        {
-            //console.log(this.gamepad.axes[0])
-            if (this.gamepad.axes[0] > 0.2 || this.gamepad.axes[0] < -0.2)
-                this.position.x += this.gamepad.axes[0] * this.speed;
-            if (this.gamepad.axes[1] > 0.2 || this.gamepad.axes[1] < -0.2) 
-                this.position.y += this.gamepad.axes[1] * this.speed;
-        }
 
         this.update = function()
         {
             this.render();
             this.move();
+            this.shoot();
+        }
+    }
+
+    Player.prototype.render = function()
+    {
+        app.ctx.fillStyle = this.color;
+        app.ctx.fillRect(this.position.x, this.position.y, this.size.x, this.size.y);
+    }
+
+    Player.prototype.move = function()
+    {
+        if (this.gamepad.axes[0] > 0.2 || this.gamepad.axes[0] < -0.2)
+            this.position.x += this.gamepad.axes[0] * this.speed;
+        if (this.gamepad.axes[1] > 0.2 || this.gamepad.axes[1] < -0.2) 
+            this.position.y += this.gamepad.axes[1] * this.speed;
+    }
+
+    Player.prototype.shoot = function()
+    {
+        var vector2 = { x : 0, y : 0 };
+        if (this.gamepad.axes[2] > 0.5 || this.gamepad.axes[2] < -0.5)
+        {
+            vector2.x = this.gamepad.axes[2];
+            vector2.y = -this.gamepad.axes[3];
+        }
+        else
+        if (this.gamepad.axes[3] > 0.5 || this.gamepad.axes[3] < -0.5)
+        {
+            vector2.x = this.gamepad.axes[2];
+            vector2.y = -this.gamepad.axes[3];
+            console.log(vector2);            
         }
     }
 
