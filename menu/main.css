@@ -243,6 +243,7 @@ font-family: 'Gloria Hallelujah', cursive;
 font-size:35px;
 position: relative;
 z-index:0;
+bottom:800px;
 }
 
 #Generique    {
