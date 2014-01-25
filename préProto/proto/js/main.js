@@ -4,7 +4,7 @@ function run()
 {
     canvasManager.clean();
 
-    context.drawImage(img, 0, 0 , 1024, 759, 0, 0, 1024, 759);
+    canvasManager.drawImage(img, 0, 0 , 1024, 759, 0, 0, 1024, 759);
     //parcour du tableau des bullets du joueur pour check les collisions des bullets
     for(var i = 0; i<playersBullets.length; i++)
     {
