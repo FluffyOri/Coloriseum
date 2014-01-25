@@ -6,7 +6,7 @@
 define(["world"], function(world) {
     return function()
     {
-        if (world.debug)
+        if (world.debugMode)
         {
             window.world = world;
         }

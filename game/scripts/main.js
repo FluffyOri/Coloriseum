@@ -18,7 +18,7 @@ require(   ["app", "world",
 				gamepadManager.init();
 				debugManager();
 
-				
+
 
 				//call gameloop
 				gameloop();
@@ -30,8 +30,10 @@ require(   ["app", "world",
 				stats.begin();
 
 			    cleanCanvas();
+			    gamepadManager.run();
 			    world.run();
-			    gamepadManager.pollGamepads();
+
+			    world.findGameObjectWithTag("player").move();
 
 				stats.end();
 

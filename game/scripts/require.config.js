@@ -15,6 +15,7 @@ require.config({
 		'movement_manager' : 'managers/movement_manager',
 		'render_manager' : 'managers/render_manager',
 		'utils' : 'managers/utils',
+		'player' : 'models/player',
 		'world' : 'models/world',
 	},
 	shim : {

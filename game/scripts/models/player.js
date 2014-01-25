@@ -1,7 +1,9 @@
 define(["app", "world"], function(app, world) {
-    var Player = function Player() 
+    var Player = function Player(params) 
     {
         this.id       = params.id;
+        this.tag      = params.tag;
+        this.playerID = params.playerID;
         this.size     = params.size;
         this.speed    = 10;
 
@@ -16,7 +18,7 @@ define(["app", "world"], function(app, world) {
             break;
             case 1:
                 this.position = {
-                    x : app.app.topRightAnchor.x - this.size.x - 10,
+                    x : app.topRightAnchor.x - this.size.x - 10,
                     y : app.topRightAnchor.y + 10,
                 }
                 this.color = app.colors.orange;
@@ -37,6 +39,22 @@ define(["app", "world"], function(app, world) {
             break;
         }
 
-        
+        this.render = function()
+        {
+            app.ctx.fillStyle = "white";
+            app.ctx.fillRect(this.position.x, this.position.y, this.size.x, this.size.y);
+        }
+
+        this.move = function()
+        {
+            this.position.x ++;
+        }
+
+        this.update = function()
+        {
+            this.render();
+        }
     }
+
+    return Player;
 });
