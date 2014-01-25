@@ -3873,7 +3873,7 @@ require("./libs/jquery.js");
 require("./libs/jquery.hotkeys.js");
 var io = require("socket.io-browserify");
 
-window.socket    = io.connect("http://localhost:8075");
+window.socket    = io.connect("http://10.102.189.2:8075");
 var app          = require("./app");
 var utils        = require("./managers/utils");
 var debugManager = require("./managers/debug_manager");

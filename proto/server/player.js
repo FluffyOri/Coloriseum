@@ -49,7 +49,6 @@ var Player = function Player(params)
 
     this.move = function(vector)
     {
-        console.log("hue")
         this.position.x += this.speed * vector.x;
         this.position.y += this.speed * vector.y;
     }
