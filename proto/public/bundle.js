@@ -3915,7 +3915,6 @@ $(function() {
 					if (players[i].id === data)
 					{
 						world.gameObjects.splice(world.gameObjects.indexOf(players[i]), 1);
-						console.table(world.gameObjects);
 					}
 				}
 			});
