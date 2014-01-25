@@ -43,7 +43,7 @@ function initPlayers() {
 var img = new Image();   // Create new img element
 
 window.onload = function(e) {
-    canvasManager.init(1024, 759);
+    canvasManager.init(1024, 768);
 	initPlayers();
 	targetX = event.x;
     targetY = event.y;
