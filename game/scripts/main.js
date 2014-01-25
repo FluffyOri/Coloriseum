@@ -1,8 +1,8 @@
 require(   ["app", "world", 
-			"input_manager", "debug_manager", "gamepad_manager",
+			"debug_manager", "gamepad_manager",
 			"stats", "jquery"], 
 	function(app,   world,  
-			 inputManager,    debugManager,    gamepadManager) {
+			 debugManager,    gamepadManager) {
 
 		$(function() {
 			function init ()
@@ -14,11 +14,8 @@ require(   ["app", "world",
 				app.canvas.height = app.GAME_HEIGHT;
 
 				//call managers
-				inputManager();
 				gamepadManager.init();
 				debugManager();
-
-
 
 				//call gameloop
 				gameloop();

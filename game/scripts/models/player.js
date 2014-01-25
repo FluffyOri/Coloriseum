@@ -65,19 +65,20 @@ define(["app", "world"], function(app, world) {
 
     Player.prototype.shoot = function()
     {
-        var vector2 = { x : 0, y : 0 };
+        var vector2 = null;
         if (this.gamepad.axes[2] > 0.5 || this.gamepad.axes[2] < -0.5)
         {
             vector2.x = this.gamepad.axes[2];
             vector2.y = -this.gamepad.axes[3];
         }
-        else
         if (this.gamepad.axes[3] > 0.5 || this.gamepad.axes[3] < -0.5)
         {
             vector2.x = this.gamepad.axes[2];
-            vector2.y = -this.gamepad.axes[3];
-            console.log(vector2);            
+            vector2.y = -this.gamepad.axes[3];    
         }
+
+        if (vector2 != null)
+            console.log(vector2)
     }
 
     return Player;
