@@ -1,23 +1,23 @@
 function Startloc() {
 
-window.location="../otherHtml/start.html";
+window.location="start.html";
 
 }
 
 function Settingsloc()  {
 
-window.location="../otherHtml/settings.html";
+window.location="settings.html";
 
 }
 
 function Creditsloc()  {
 
-window.location="../otherHtml/credits.html";
+window.location="credits.html";
 
 }
 
 function Createloc()   {
 
-window.location="../otherHtml/create.html";
+window.location="create.html";
 
 }

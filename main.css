@@ -10,6 +10,8 @@ body  {
 
 font-family: 'Gloria Hallelujah', cursive;
 font-size: 100px;
+position: relative;
+z-index:2;
 
 }
 
@@ -295,4 +297,21 @@ opacity:0.6;
 
 height:40px;
 
+}
+
+.LesNoms   {
+
+font-family: 'Gloria Hallelujah', cursive;
+font-size:35px;
+position: absolute;
+top:-500px;
+left:600px;
+}
+
+#Generique    {
+
+font-family: 'Gloria Hallelujah', cursive;
+
+
+	
 }
