@@ -304,14 +304,25 @@ height:40px;
 font-family: 'Gloria Hallelujah', cursive;
 font-size:35px;
 position: absolute;
-top:-500px;
+top:-400px;
 left:600px;
+z-index:0;
 }
 
 #Generique    {
 
 font-family: 'Gloria Hallelujah', cursive;
+position:relative;
+z-index:2;
+}
 
+#CacheBlanc   {
 
-	
+height:650px;
+width:1480px;
+position:absolute;
+bottom:500px;
+z-index:1;
+background-color: white;
+
 }

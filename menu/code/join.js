@@ -23,7 +23,7 @@ function join(){
 
 function nom()  {
 
-$('.LesNoms').animate({ y: '1800px' },  { duration: 50000 });
+$('.LesNoms').animate({ y: '1400px' },  { duration: 35000 });
 
 }
 
