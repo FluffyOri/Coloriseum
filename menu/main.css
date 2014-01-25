@@ -1,265 +1,186 @@
 body  {
 
+margin:0;
+background-image: url(./image/menu_fond.jpg); 
+background-position: center center;
+background-repeat: no-repeat; 
+background-attachment: fixed; 
+background-size: cover; 
+-moz-background-size: 100% 100%;     /* Gecko 1.9.2 (Firefox 3.6) */
+-o-background-size: 100% 100%;        /* Opera 9.5 */
+-webkit-background-size: 100% 100%;   /* Safari 3.0 */
+background-size: 100% 100%;           /* Gecko 2.0 (Firefox 4.0) > CSS3 */ 
+overflow:hidden;
+}
 
+.CadreNoir  {
+
+background-color: black;
+opacity:0.8;
+width:1000px;
+height:1024px;
+position:relative;
+z-index:0;
+margin:auto;
 
 }
 
+
+
+#ButtonStart  {
+
+     background-image: url(./image/btn_go_resiz.png); 
+     /*padding-top: 5px;*/ /*permet le centrage vertical*/
+     width: 225px;
+     height: 206px; 
+     background-repeat:no-repeat;
+     margin: auto;
+     position: absolute;
+     top: 600px; left: 0; bottom: 0; right: 0;
+}
+
+#ButtonStart:hover  {
+
+     background-image: url(./image/btn_go_resiz.png); 
+     /*padding-top: 5px;*/ /*permet le centrage vertical*/
+     width: 225px;
+     height: 206px; 
+     background-repeat:no-repeat;
+     opacity:1;
+     margin: auto;
+     position: absolute;
+     top: 600px; left: 0; bottom: 0; right: 0;
+     filter: saturate(500%);
+        -webkit-filter: saturate(500%);
+        -moz-filter: saturate(500%);
+        -o-filter: saturate(500%);
+        -ms-filter: saturate(500%);
+}
+
+#ButtonStart:active {
+
+     background-image: url(./image/btn_go_resiz.png); 
+     /*padding-top: 5px;*/ /*permet le centrage vertical*/
+     width: 225px;
+     height: 206px; 
+     background-repeat:no-repeat;
+     margin: auto;
+     position: absolute;
+     top: 600px; left: 0; bottom: 0; right: 0;
+}
 
 
 #Titre  {
 
+     background-image: url(./image/enu_title_resiz.png); 
+     /*padding-top: 5px;*/ /*permet le centrage vertical*/
+     width: 1024px;
+     height: 313px; 
+     background-repeat:no-repeat;
+     margin: auto;
+     position: absolute;
+     top: 150px; left: 0; bottom: 0; right: 0;
+
+}
+
+#TitreCred   {
+
+
+     background-image: url(./image/enu_title_resiz.png); 
+     /*padding-top: 5px;*/ /*permet le centrage vertical*/
+     width: 1024px;
+     height: 313px; 
+     background-repeat:no-repeat;
+     margin: auto;
+     position: absolute;
+     top: 0; left: 0; bottom: 475px; right: 0px;
+     z-index:4;
+
+
+
+}
+
+#ButtonCred {
+
+    text-align:center;
+    width:auto;
+    padding:8px 0;
+    text-align:center;
+    display: inline-block;
+    float:left;
+    margin:0 8px 0 0;
+    border-radius:7px;
+    font-size: 1.1em;
+    width:120px;
+    color:#999;
+    font-family: Arial,sans-serif;
+
+}
+
+#ButtonCred, #ButtonCred:active {
+    background: #444;
+    background: linear-gradient( #555, #2C2C2C);
+    background: -webkit-linear-gradient( #555, #2C2C2C);
+    background: -moz-linear-gradient( #555, #2C2C2C);
+    background: -ms-linear-gradient( #555, #2C2C2C);
+    background: -o-linear-gradient( #555, #2C2C2C);
+    background: linear-gradient( #555, #2C2C2C);
+}
+
+#ButtonCred:hover  {
+
+    background: #555;
+    background: -webkit-linear-gradient( #777, #333);
+    background: -moz-linear-gradient( #777, #333);
+    background: -ms-linear-gradient( #777, #333);
+    background: -o-linear-gradient( #777, #333);
+    background: linear-gradient( #777, #333);
+
+}
+
+#ButtonCred {
+
+box-shadow: 0 0 1px rgba( 0, 0, 0, 0.2), 0 -1px 0 rgba( 255, 255, 255, 0.1);
+text-shadow: 0px 1px 0px rgba( 255, 255, 255, 0.3);
+
+}
+
+#ButtonCred:active   {
+
+    box-shadow: 1px 1px 10px #000 inset, 0 1px 0 rgba( 255, 255, 255, 0.4);
+
+}
+
+#Generique  {
+
 font-family: 'Gloria Hallelujah', cursive;
-font-size: 100px;
-position: relative;
-z-index:2;
-
-}
-
-#Titre:hover  {
-
-color: red;
-opacity:0.6;
-
-}
-
-#ButtonStart  {
-
-     font-family: 'Gloria Hallelujah', cursive;
-     font-size: 40px;
-     width: 300px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     color: #000;
-     background: #444;
-     border-radius: 8px;
-     top: 110px;
-     position: relative;
-     z-index:2;
-
-}
-
-#ButtonStart:hover   {
-
-     font-family: 'Gloria Hallelujah', cursive;
-     font-size: 40px;
-     width: 300px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     color: red;
-     opacity:0.6;
-     background: #444;
-     border-radius: 8px;
-     top: 110px;
-     position: relative;
-     z-index:2;
-
-}
-
-#ButtonStart:active   {
-
- 	 font-family: 'Gloria Hallelujah', cursive;
-     font-size: 40px;
-     width: 300px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     color: red;
-     opacity:0.6;
-     background: black;
-     border-radius: 8px;
-     top: 110px;
-     position: relative;
-     z-index:2;
-
-}
-
-#ButtonSet  {
-
-     font-family: 'Gloria Hallelujah', cursive;
-     font-size: 40px;
-     width: 300px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     text-align: center;
-     color: #000;
-     background: #444;
-     border-radius: 8px;
-     position: relative;
-     top: 110px;
-
-}
-
-#ButtonSet:hover  {
-	
-     font-family: 'Gloria Hallelujah', cursive;
-     font-size: 40px;
-     width: 300px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     text-align: center;
-     color: red;
-     opacity: 0.6;
-     background: #444;
-     border-radius: 8px;
-     position: relative;
-     top: 110px;
-
-}
-
-#ButtonSet:active   {
-
-	 font-family: 'Gloria Hallelujah', cursive;
-     font-size: 40px;
-     width: 300px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     text-align: center;
-     color: red;
-     opacity:0.6;
-     background: black;
-     border-radius: 8px;
-     position: relative;
-     top: 110px;
-
-}
-
-#ButtonCred  {
-
-     font-family: 'Gloria Hallelujah', cursive;
-     font-size: 40px;
-     width: 300px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     text-align: center;
-     color: #000;
-     background: #444;
-     border-radius: 8px;
-     position: relative;
-     top: 110px;
-
-}
-
-#ButtonCred:hover   {
-
-     font-family: 'Gloria Hallelujah', cursive;
-     font-size: 40px;
-     width: 300px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     text-align: center;
-     color: red;
-     opacity: 0.6;
-     background: #444;
-     border-radius: 8px;
-     position: relative;
-     top: 110px;
-
-}
-
-#ButtonCred:active    {
-
-	 font-family: 'Gloria Hallelujah', cursive;
-     font-size: 40px;
-     width: 300px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     text-align: center;
-     color: red;
-     opacity:0.6;
-     background: black;
-     border-radius: 8px;
-     position: relative;
-     top: 110px;
-
-}
-
-#ButtonJoin   {
-
-	 font-family: 'Gloria Hallelujah', cursive;
-     font-size: 30px;
-     width: 75px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     text-align: center;
-     color: #000;
-     background: #444;
-     border-radius: 8px;
-     top: 357px;
-     left:830px;
-     opacity:0;
-     position: absolute;
-     z-index:0;
-
-}
-
-#ButtonJoin:hover   {
-
-	 font-family: 'Gloria Hallelujah', cursive;
-     font-size: 30px;
-     width: 75px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     text-align: center;
-     color: red;
-     opacity:0.6;
-     background: #444;
-     border-radius: 8px;
-     top: 357px;
-     left:830px;
-     opacity:0;
-     position: absolute;
-     z-index:0;
-
-}
-
-#ButtonJoin:active  {
-
- 	 font-family: 'Gloria Hallelujah', cursive;
-     font-size: 30px;
-     width: 75px;
-     height: 75px;
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
-     text-align: center;
-     color: red;
-     opacity:0.6;
-     background: black;
-     border-radius: 8px;
-     top: 357px;
-     left:830px;
-     opacity:0;
-     position: absolute;
-     z-index:0;
-
-}
-
-#Espacement   {
-
-height:40px;
+ background-repeat:no-repeat;   
+ margin: auto;
+ position: absolute;
+ top: 315px; left: 0; bottom: 0; right: 0;
+ color: white;
+ z-index:4;
 
 }
 
 .LesNoms   {
 
 font-family: 'Gloria Hallelujah', cursive;
-font-size:35px;
+font-size:25px;
 position: relative;
-z-index:0;
-bottom:800px;
-}
-
-#Generique    {
-
-font-family: 'Gloria Hallelujah', cursive;
-position:relative;
 z-index:2;
+bottom:315px;
+color:white;
 }
 
-#CacheBlanc   {
+#CacheNoir   {
 
-height:650px;
-width:1480px;
-position:absolute;
-bottom:500px;
-z-index:1;
-background-color: white;
+background-color: black;
+height:400px;
+width:1000px;
+position:relative;
+z-index:3;
+
+
 
 }
