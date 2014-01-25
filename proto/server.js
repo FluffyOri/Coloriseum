@@ -39,7 +39,8 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('disconnect', function() {
-        players.splice(id, 1);
+        io.sockets.emit("player disconnected", myPlayer.id);
+        players.splice(myPlayer.id, 1);
     });
     
 });   

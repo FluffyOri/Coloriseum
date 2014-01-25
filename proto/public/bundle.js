@@ -3908,10 +3908,21 @@ $(function() {
 				createPlayer(data, false);
 			});
 
+			socket.on("player disconnected", function(data) {
+				var players = world.findGameObjectsWithTag("player");
+				for (var i = 0; i < players.length; i++)
+				{
+					if (players[i].id === data)
+					{
+						world.gameObjects.splice(world.gameObjects.indexOf(players[i]), 1);
+						console.table(world.gameObjects);
+					}
+				}
+			});
+
 			socket.on("update positions", function(data) {
 				for (var i = 0; i < data.length; i++)
 				{
-					console.log(data[i].position);
 					world.findGameObjectsWithTag("player")[i].position = data[i].position;
 				}
 			});
