@@ -40,8 +40,10 @@ function initPlayers() {
 	popCollectible();
 }
 
+var img = new Image();   // Create new img element
+
 window.onload = function(e) {
-    canvasManager.init(600, 600);
+    canvasManager.init(1024, 759);
 	initPlayers();
 	targetX = event.x;
     targetY = event.y;
@@ -49,7 +51,7 @@ window.onload = function(e) {
 	img.onload = function(){
 					run();
 				};
-	img.src = 'LD_Coloriseum_1.jpeg'; // Set source path
+	img.src = 'src/LD_Coloriseum_1.jpg'; // Set source path
 };
 
 // Math.pow(x,2)
