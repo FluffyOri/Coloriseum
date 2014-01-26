@@ -58,6 +58,18 @@ define(["world", "player", "app"], function(world, Player, app) {
                         gamepad : this.gamepads[i]
                     }));
 
+                    if(i==0)
+                    document.getElementById("squelette-player").style.backgroundImage = "url(medias/player_squelette_actif.png)";
+
+                    if(i==1)
+                    document.getElementById("robot-player").style.backgroundImage = "url(medias/player_robot_actif.png)";
+
+                    if(i==2)
+                    document.getElementById("kawaii-player").style.backgroundImage = "url(medias/player_kawaii_actif.png)";
+
+                    if(i==3)
+                    document.getElementById("dragon-player").style.backgroundImage = "url(medias/player_dragon_actif.png)";
+
                     app.stillAlive++;
                 }
             }
