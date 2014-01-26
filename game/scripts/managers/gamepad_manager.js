@@ -42,7 +42,7 @@ define(["world", "player"], function(world, Player) {
                         tag : "player",
                         id : world.gameObjects.length,
                         playerID : i,
-                        size : { x : 30, y : 30 },
+                        size : { x : 32, y : 32 },
                         gamepad : this.gamepads[i]
                     }));
                     console.table(world.gameObjects);

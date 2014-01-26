@@ -25,3 +25,4 @@ Bullet.prototype.move = function()
 	this.x += Math.cos(this.angle) * this.speed;
 	this.y -= Math.sin(this.angle) * this.speed;
 }
+

@@ -9,6 +9,7 @@ require.config({
 		'stats' : 'libs/stats',
 		'debug_manager' : 'managers/debug_manager',
 		'gamepad_manager' : 'managers/gamepad_manager',
+		'garbage_collector' : 'managers/garbage_collector',
 		'utils' : 'managers/utils',
 		'bullet' : 'models/bullet',
 		'player' : 'models/player',
