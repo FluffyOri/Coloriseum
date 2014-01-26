@@ -1,5 +1,5 @@
 define({
-    gameMode          : "scoring",
+    gameMode          : "limited_life",
     neededScore       : 4,
 	canvas            : null,
 	ctx               : null,
@@ -16,6 +16,7 @@ define({
     topRightAnchor    : { x : 1024, y : 0 },
     bottomLeftAnchor  : { x : 0,    y : 768 },
     bottomRightAnchor : { x : 1024, y : 768 },
+    hp     : [document.getElementById('textScore1'), document.getElementById('textScore2'), document.getElementById('textScore3'), document.getElementById('textScore4')],
     colors : [
         "rgb(66, 27, 121)",
         "rgb(255, 246, 133)",

@@ -46,6 +46,7 @@ require(   ["app", "world",
 			    	world.run();
 			    	garbageCollector();
 			    	checkGameOver();
+			    	setLifeOnUI();
 
 					stats.end();
 
@@ -145,6 +146,29 @@ require(   ["app", "world",
 				}
 
 				setTimeout(popGeneralEvent, 30000);
+			}
+
+			function setLifeOnUI()
+			{
+				for (var i = 0; i < world.findGameObjectsWithTag("player").length; i++)
+				{
+					if (i === 0)
+					{
+						app.hp[0].innerHTML = "LIFE : " + world.findGameObjectsWithTag("player")[i].life;
+					}
+					if (i === 1)
+					{
+						app.hp[1].innerHTML = "LIFE : " + world.findGameObjectsWithTag("player")[i].life;
+					}
+					if (i === 2)
+					{
+						app.hp[2].innerHTML = "LIFE : " + world.findGameObjectsWithTag("player")[i].life;
+					}
+					if (i === 3)
+					{
+						app.hp[3].innerHTML = "LIFE : " + world.findGameObjectsWithTag("player")[i].life;
+					}
+				}
 			}
 
 			init();

@@ -109,3 +109,34 @@ filter: FlipH;
 
 overflow:hidden;
 }
+
+
+
+#textScore1{
+	font-family: 'Gloria Hallelujah', cursive;
+	position: absolute;
+	top: 260px;
+	left: 70px;
+	color: white;
+}
+#textScore2{
+	font-family: 'Gloria Hallelujah', cursive;
+	position: absolute;
+	top: 260px;
+	left: 70px;
+	color: white;
+}
+#textScore3{
+	font-family: 'Gloria Hallelujah', cursive;
+	position: absolute;
+	top: 265px;
+	left: 70px;
+	color: white;
+}
+#textScore4{
+	font-family: 'Gloria Hallelujah', cursive;
+	position: absolute;
+	top: 265px;
+	left: 70px;
+	color: white;
+}
