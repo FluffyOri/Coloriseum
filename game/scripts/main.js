@@ -29,6 +29,10 @@ require(   ["app", "world",
 
 				//call gameloop
 				gameloop();
+
+				setTimeout(popGeneralEvent, 30000);
+
+				setTimeout(checkGameOver,5000);
 			}
 
 			function gameloop()
@@ -51,7 +55,7 @@ require(   ["app", "world",
 
 			function cleanCanvas()
 			{
-				app.ctx.fillStyle = "black"; 
+				app.ctx.fillStyle = "grey"; 
 				app.ctx.fillRect(0,0,app.GAME_WIDTH,app.GAME_HEIGHT);
 				app.ctx.drawImage(app.buffers[4].canvas, 0, 0);
 			}
@@ -71,6 +75,9 @@ require(   ["app", "world",
 									var playerNumber = i + 1;
 									app.paused = true;
 									console.log("Player " + playerNumber + " Wins !!!");
+									app.ctx.font = '40pt Calibri';
+									app.ctx.fillStyle = "rgb(223,223,223)";
+      								app.ctx.fillText("Game Over !", 375, 150);
 								}
 							}
 						}
@@ -86,9 +93,58 @@ require(   ["app", "world",
 							var playerNumber = i + 1;
 							app.paused = true;
 							console.log("Player " + playerNumber + " Wins !!!");
+							app.ctx.font = '40pt Calibri';
+							app.ctx.fillStyle = "rgb(223,223,223)";
+      						app.ctx.fillText("Game Over !", 375, 150);
 						}
 					}
 				}
+			}
+
+			function popGeneralEvent()
+			{
+				// var whichRandomEvent = Math.floor(Math.random()*3 + 1);
+				var whichRandomEvent = 1;
+
+				if (whichRandomEvent === 1)
+				{
+					var whichPlayerIsWanted = Math.floor(Math.random()*4);
+
+					if (whichPlayerIsWanted >= world.findGameObjectsWithTag("player").length)
+					{
+						whichPlayerIsWanted = Math.floor(Math.random());
+					}
+
+					world.findGameObjectsWithTag("player")[whichPlayerIsWanted].wanted = true;
+
+					//wanted during 10 sec
+					setTimeout(cancelWanted, 10000);
+				}
+
+				if (whichRandomEvent === 2)
+				{
+
+				}
+
+				if (whichRandomEvent === 3)
+				{
+
+				}
+
+				if (whichRandomEvent === 4)
+				{
+
+				}
+			}
+
+			function cancelWanted()
+			{
+				for (var i = 0; i < world.findGameObjectsWithTag("player").length; i++)
+				{
+					world.findGameObjectsWithTag("player")[i].wanted = false;
+				}
+
+				setTimeout(popGeneralEvent, 30000);
 			}
 
 			init();

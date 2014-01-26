@@ -1,4 +1,6 @@
 define({
+    gameMode          : "scoring",
+    neededScore       : 4,
 	canvas        : null,
 	ctx           : null,
 	GAME_WIDTH    : 1024,
@@ -8,8 +10,6 @@ define({
     CASE_SIZE     : 64,
     playerSpeed   : 3,
     bulletSpeed   : 8,
-    gameMode          : "scoring",
-    neededScore       : 100,
     stillAlive        : 0,
     paused            : false,
     topLeftAnchor     : { x : 0,    y : 0 },

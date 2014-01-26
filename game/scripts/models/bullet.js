@@ -45,9 +45,28 @@ define(["world", "app"], function(world, app) {
                 {
                     if (object.tag === "player" && object.id != that.ownerID)
                     {
+                        if (app.gameMode === "scoring")
+                        {
+                            if (object.wanted)
+                            {
+                                world.gameObjects[that.ownerID].addFrag(2);
+                                object.wanted = false;
+                            }
+                            else
+                                world.gameObjects[that.ownerID].addFrag(1);
+                        }
+
+                        if (app.gameMode === "limited_life")
+                        {
+                            if (object.wanted)
+                            {
+                                world.gameObjects[that.ownerID].addLife();
+                                object.wanted = false;
+                            }
+                        }
+
                         object.die();
                         that.die();
-                        world.gameObjects[that.ownerID].addFrag();
                     }
                 }
             }
