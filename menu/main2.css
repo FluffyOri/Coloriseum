@@ -1,7 +1,7 @@
 body  {
 
 margin:0;
-background-image: url(./image/menu_fond_resiz3.jpg); 
+background-image: url(./image/menu_fond_resiz.jpg); 
 background-position: center center;
 background-repeat: no-repeat; 
 background-attachment: fixed; 
@@ -12,8 +12,6 @@ background-size: cover;
 background-size: 100% 100%;           /* Gecko 2.0 (Firefox 4.0) > CSS3 */ 
 overflow:hidden;
 }
-
-
 
 input {
 width: 13px;
@@ -113,8 +111,8 @@ box-shadow: 0px -35px 35px #000;
 
 /*#Titre  {
 
-     background-image: url(./image/menu_title_resiz.png); 
-     /*padding-top: 5px;*/ /*permet le centrage vertical*/
+     background-image: url(./image/enu_title_resiz.png); 
+     /*padding-top: 5px; /*permet le centrage vertical
      width: 1024px;
      height: 313px; 
      background-repeat:no-repeat;
@@ -382,3 +380,4 @@ left:450px;
     left:450px;
 
 }
+
