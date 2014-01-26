@@ -1,8 +1,8 @@
 require(   ["app", "world", 
-			"debug_manager", "gamepad_manager",
+			"debug_manager", "gamepad_manager", "garbage_collector",
 			"stats", "jquery"], 
 	function(app,   world,  
-			 debugManager,    gamepadManager) {
+			 debugManager,    gamepadManager,    garbageCollector) {
 
 		$(function() {
 			function init ()
@@ -29,6 +29,7 @@ require(   ["app", "world",
 			    cleanCanvas();
 			    gamepadManager.run();
 			    world.run();
+			    garbageCollector();
 
 				stats.end();
 
