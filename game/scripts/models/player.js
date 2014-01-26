@@ -12,7 +12,9 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         this.sightRadius = 75;
         this.img         = new Image();
         this.viewActive  = true;
-
+        this.alive    = true;
+        this.life     = params.life || 2;
+        this.frag     = 0;
 
         switch(this.playerID)
         {
@@ -21,7 +23,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
                     x : app.topLeftAnchor.x + 10,
                     y : app.topLeftAnchor.y + 10,
                 }
-                this.color = app.colors[0];
+                this.color   = "red";
                 this.idColor = 0;
                 this.img.src = app.images["player" + (this.playerID+1)][this.idColor];
             break;
@@ -30,7 +32,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
                     x : app.topRightAnchor.x - this.size.x - 10,
                     y : app.topRightAnchor.y + 10,
                 }
-                this.color = app.colors[1];
+                this.color   = "red";
                 this.idColor = 1;
                 this.img.src = app.images["player" + (this.playerID+1)][this.idColor];
             break;
@@ -39,7 +41,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
                     x : app.bottomLeftAnchor.x + 10,
                     y : app.bottomLeftAnchor.y - this.size.y - 10,
                 }
-                this.color = app.colors[2];
+                this.color   = "red";
                 this.idColor = 2;
                 this.img.src = app.images["player" + (this.playerID+1)][this.idColor];
             break;
@@ -48,7 +50,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
                     x : app.bottomRightAnchor.x - this.size.x - 10,
                     y : app.bottomRightAnchor.y - this.size.y - 10,
                 }
-                this.color = app.colors[3];
+                this.color   = "red";
                 this.idColor = 3;
                 this.img.src = app.images["player" + (this.playerID+1)][this.idColor];
             break;
@@ -58,13 +60,16 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
 
         this.update = function()
         {
-            this.controls();
-            this.move();
-            this.collisions();
-            this.render();
-            if (this.shotTime + this.delay < new Date().getTime())
-            {                
-                this.shoot();
+            if (this.alive)
+            {
+                this.move();
+                this.collisions();
+                this.render();
+
+                if (this.shotTime + this.delay < new Date().getTime())
+                {                
+                   this.shoot();
+                }
             }
         }
     }
@@ -75,11 +80,6 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         {
             
         }
-    }
-
-    Player.prototype.setPattern = function(pattern)
-    {
-        this.pat = app.ctx.createPattern(app.buffers[this.idColor].canvas,"no-repeat");
     }
 
     Player.prototype.render = function()
@@ -136,7 +136,26 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             y : Math.floor(Math.random() * (app.GAME_HEIGHT - this.size.y))
         }
         
-        
+        this.previousColor = this.img.src;
+
+        while(this.img.src == this.previousColor)
+        {
+            var newColorIndex = Math.floor((Math.random()*4));
+            this.img.src = app.images["player" + (this.playerID+1)][newColorIndex];
+        }
+
+        if (app.gameMode === "limited_life")
+        {
+            if (this.life > 1)
+            {
+                this.life--;
+            }
+            else
+            {
+                this.alive = false;
+                app.stillAlive--;
+            }
+        }
     }
 
     Player.prototype.collisions = function()
@@ -148,6 +167,11 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             this.position.x = this.lastPos.x;
             this.position.y = this.lastPos.y;
         }
+    }
+
+    Player.prototype.addFrag = function()
+    {
+        this.frag++;
     }
 
     return Player;

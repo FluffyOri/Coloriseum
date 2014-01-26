@@ -38,12 +38,17 @@ define(["world", "app"], function(world, app) {
     {
         var that = this;
         world.forAll(world.gameObjects, function(object) {
-            if (that.position.x + that.size.x > object.position.x && that.position.x < object.position.x + object.size.x &&
-                that.position.y + that.size.y > object.position.y && that.position.y < object.position.y + object.size.y)
+            if (object)
             {
-                if (object.tag === "player" && object.id != that.ownerID)
+                if (that.position.x + that.size.x > object.position.x && that.position.x < object.position.x + object.size.x &&
+                    that.position.y + that.size.y > object.position.y && that.position.y < object.position.y + object.size.y)
                 {
-                    object.die();
+                    if (object.tag === "player" && object.id != that.ownerID)
+                    {
+                        object.die();
+                        that.die();
+                        world.gameObjects[that.ownerID].addFrag();
+                    }
                 }
             }
         });

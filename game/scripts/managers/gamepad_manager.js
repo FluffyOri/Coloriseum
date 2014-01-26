@@ -1,4 +1,4 @@
-define(["world", "player"], function(world, Player) {
+define(["world", "player", "app"], function(world, Player, app) {
     return {
         gamepads: [],
 
@@ -45,31 +45,10 @@ define(["world", "player"], function(world, Player) {
                         size : { x : 32, y : 32 },
                         gamepad : this.gamepads[i]
                     }));
+
+                    app.stillAlive++;
                 }
             }
-        },
-
-/*        checkGamepadDisonnect : function() 
-        {
-            var players = world.findGameObjectsWithTag("player");
-            
-            for (var i = 0; i < players.length; i++)
-            {
-                var gamepadExist = false;
-                for (var j = 0; j < this.gamepads.length; j++)
-                {
-                    if (this.gamepads[j].index === players[i].playerID)
-                    {
-                        gamepadExist = true;
-                    }                    
-                }
-
-                if (!gamepadExist)
-                {
-                    world.gameObjects.splice(players[i].id, 1);
-                    console.table(world.gameObjects);
-                }
-            }
-        }*/
+        }
     }  
 });
