@@ -1,4 +1,5 @@
 define({
+    gameMode      : "limited_life",
 	canvas        : null,
 	ctx           : null,
 	GAME_WIDTH    : 1024,

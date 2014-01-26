@@ -1,15 +1,18 @@
 define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) {
     var Player = function Player(params) 
     {
-        this.id       = params.id;
-        this.tag      = params.tag;
+        this.id       = params.id;              //id dans les gameObjects
+        this.tag      = params.tag;             //id du player lui mm
         this.playerID = params.playerID;
         this.size     = params.size;
         this.speed    = app.playerSpeed;
         this.gamepad  = params.gamepad;
         this.shotTime = new Date().getTime();
         this.delay    = 250;
-        this.img = new Image();
+        this.alive    = true;
+        this.life     = params.life || 1;
+        this.frag     = 0;
+        this.img      = new Image();
 
 
         switch(this.playerID)
@@ -55,12 +58,16 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
 
         this.update = function()
         {
-            this.move();
-            this.collisions();
-            this.render();
-            if (this.shotTime + this.delay < new Date().getTime())
-            {                
-                this.shoot();
+            if (this.alive)
+            {
+                this.move();
+                this.collisions();
+                this.render();
+                
+                if (this.shotTime + this.delay < new Date().getTime())
+                {                
+                   this.shoot();
+                }
             }
         }
     }
@@ -73,20 +80,13 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
 
         
         /*app.ctx.beginPath();
-
-<<<<<<< HEAD
         app.ctx.save();
         app.ctx.translate(this.position.x + this.size.x/2, this.position.y + this.size.y/2);
         app.ctx.rotate(this.angle);
         // app.ctx.fillRect(this.position.x, this.position.y, this.size.x, this.size.y);
-=======
-/*      app.ctx.save();
-        app.ctx.translate(this.position.x + this.size.x / 2, this.position.y + this.size.y / 2);
-        app.ctx.rotate(this.angle);     
->>>>>>> f888effd443a588da3d123140ed5d8a409bfc065
         app.ctx.restore();*/
 
-        app.ctx.drawImage(this.img, this.position.x - this.size.x/2, this.position.y - this.size.y/2, this.size.x, this.size.y);
+        app.ctx.drawImage(this.img, this.position.x, this.position.y, this.size.x, this.size.y);
     }
 
     Player.prototype.move = function()
@@ -138,6 +138,19 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             var newColorIndex = Math.floor((Math.random()*4));
             this.img.src = app.images["player" + (this.playerID+1)][newColorIndex];
         }
+
+        if (app.gameMode === "limited_life")
+        {
+            if (this.life > 1)
+            {
+                this.life--;
+
+            }
+            else
+            {
+                this.alive = false;
+            }
+        }
     }
 
     Player.prototype.collisions = function()
@@ -149,6 +162,11 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             this.position.x = this.lastPos.x;
             this.position.y = this.lastPos.y;
         }
+    }
+
+    Player.prototype.addFrag = function()
+    {
+        this.frag++;
     }
 
     return Player;
