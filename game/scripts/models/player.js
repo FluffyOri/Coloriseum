@@ -114,7 +114,9 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         {
             app.ctx.fillStyle = this.pat;
             app.ctx.beginPath();
+            app.ctx.strokeStyle = "black";
             app.ctx.arc(this.position.x+this.size.x/2, this.position.y+this.size.y/2, this.sightRadius, 0, Math.PI*2);
+            app.ctx.stroke();
             app.ctx.fill();
         }
     }
