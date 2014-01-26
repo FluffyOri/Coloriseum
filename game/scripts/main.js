@@ -13,6 +13,16 @@ require(   ["app", "world",
 				app.canvas.width  = app.GAME_WIDTH;
 				app.canvas.height = app.GAME_HEIGHT;
 
+				var sound = new Howl({
+  				urls: ['sound/bonus.mp3', 'sound/laser.mp3', 'sound/malus.mp3', 'sound/mort.mp3'],
+  				sprite: {
+    				bonus: [0, 2000],
+    				laser: [0, 2000],
+   					malus: [0, 2000],
+   					mort: [0, 2000]
+   					}
+});
+
 				for (var i = 0; i < app.buffers.length; i++)
 				{
 					app.buffers[i].canvas = document.createElement("canvas");
