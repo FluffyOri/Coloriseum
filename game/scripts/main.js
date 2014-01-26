@@ -13,6 +13,9 @@ require(   ["app", "world",
 				app.canvas.width  = app.GAME_WIDTH;
 				app.canvas.height = app.GAME_HEIGHT;
 
+				app.gameMode = window.localStorage["gameMode"];
+				console.log(app.gameMode)
+
 				for (var i = 0; i < app.buffers.length; i++)
 				{
 					app.buffers[i].canvas = document.createElement("canvas");
@@ -78,6 +81,7 @@ require(   ["app", "world",
 									app.ctx.font = '40pt Calibri';
 									app.ctx.fillStyle = "rgb(223,223,223)";
       								app.ctx.fillText("Game Over !", 375, 150);
+      								app.ctx.fillText("Player " + playerNumber + " Wins !!!", 325, 225);
 								}
 							}
 						}
@@ -95,7 +99,8 @@ require(   ["app", "world",
 							console.log("Player " + playerNumber + " Wins !!!");
 							app.ctx.font = '40pt Calibri';
 							app.ctx.fillStyle = "rgb(223,223,223)";
-      						app.ctx.fillText("Game Over !", 375, 150);
+      						app.ctx.fillText("Game Over !", 375, 150);      						
+      						app.ctx.fillText("Player " + playerNumber + " Wins !!!", 325, 225);
 						}
 					}
 				}
@@ -115,7 +120,8 @@ require(   ["app", "world",
 						whichPlayerIsWanted = Math.floor(Math.random());
 					}
 
-					world.findGameObjectsWithTag("player")[whichPlayerIsWanted].wanted = true;
+					if (world.findGameObjectsWithTag("player")[whichPlayerIsWanted])
+						world.findGameObjectsWithTag("player")[whichPlayerIsWanted].wanted = true;
 
 					//wanted during 10 sec
 					setTimeout(cancelWanted, 10000);

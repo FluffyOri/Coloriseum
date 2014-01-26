@@ -20,6 +20,10 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
 
         this.activeFiltersPatterns = [];
         this.unlockedColors = [];
+/*        this.addFilterPattern(0);
+        this.addFilterPattern(1);
+        this.addFilterPattern(2);
+        this.addFilterPattern(3);*/
 
         switch(this.playerID)
         {

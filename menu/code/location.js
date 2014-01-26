@@ -1,25 +1,24 @@
 function join() {
 
-window.location="start.html";
+window.location="menu/start.html";
 
 }
 
 function Creditsloc()  {
 
-window.location="credits.html";
+window.location="menu/credits.html";
 
 }
 
 function Retour()   {
 
-window.location="index.html";
+window.location="../index.html";
 
 }
 
 function Confirmation()   {
 
-
-
-
+window.localStorage["gameMode"] = $('input[name=Mode1]:checked').val();
+window.location = "../game/index.html";
 	
 }
