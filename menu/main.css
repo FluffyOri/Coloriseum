@@ -173,6 +173,13 @@ box-shadow: 0 0 1px rgba( 0, 0, 0, 0.2), 0 -1px 0 rgba( 255, 255, 255, 0.1);
 text-shadow: 0px 1px 0px rgba( 255, 255, 255, 0.3);
 
 }
+
+#ButtonCred:active   {
+
+    box-shadow: 1px 1px 10px #000 inset, 0 1px 0 rgba( 255, 255, 255, 0.4);
+
+}
+
 #ButtonRetour, #ButtonRetour:active {
     background: #444;
     background: linear-gradient( #555, #2C2C2C);
@@ -231,7 +238,6 @@ text-shadow: 0px 1px 0px rgba( 255, 255, 255, 0.3);
 }
 
 
-
 #Generique  {
 
 font-family: 'Gloria Hallelujah', cursive;
@@ -239,6 +245,16 @@ font-family: 'Gloria Hallelujah', cursive;
  margin: auto;
  position: absolute;
  top: 315px; left: 0; bottom: 0; right: 0;
+ color: white;
+ z-index:4;
+
+}
+
+#Rules  {
+
+font-family: 'Gloria Hallelujah', cursive;
+ background-repeat:no-repeat;   
+ margin: auto;
  color: white;
  z-index:4;
 

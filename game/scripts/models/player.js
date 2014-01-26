@@ -19,7 +19,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
                     x : app.topLeftAnchor.x + 10,
                     y : app.topLeftAnchor.y + 10,
                 }
-                this.color = app.colors.purple;
+                this.color = "red";
                 this.idColor = 0;
                 this.img.src = app.images["player" + (this.playerID+1)][this.idColor];
             break;
@@ -28,7 +28,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
                     x : app.topRightAnchor.x - this.size.x - 10,
                     y : app.topRightAnchor.y + 10,
                 }
-                this.color = app.colors.yellow;
+                this.color = "red";
                 this.idColor = 1;
                 this.img.src = app.images["player" + (this.playerID+1)][this.idColor];
             break;
@@ -37,7 +37,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
                     x : app.bottomLeftAnchor.x + 10,
                     y : app.bottomLeftAnchor.y - this.size.y - 10,
                 }
-                this.color = app.colors.pink;
+                this.color = "red";
                 this.idColor = 2;
                 this.img.src = app.images["player" + (this.playerID+1)][this.idColor];
             break;
@@ -46,7 +46,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
                     x : app.bottomRightAnchor.x - this.size.x - 10,
                     y : app.bottomRightAnchor.y - this.size.y - 10,
                 }
-                this.color = app.colors.green;
+                this.color = "red";
                 this.idColor = 3;
                 this.img.src = app.images["player" + (this.playerID+1)][this.idColor];
             break;
@@ -74,10 +74,16 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         
         /*app.ctx.beginPath();
 
+<<<<<<< HEAD
         app.ctx.save();
         app.ctx.translate(this.position.x + this.size.x/2, this.position.y + this.size.y/2);
         app.ctx.rotate(this.angle);
         // app.ctx.fillRect(this.position.x, this.position.y, this.size.x, this.size.y);
+=======
+/*      app.ctx.save();
+        app.ctx.translate(this.position.x + this.size.x / 2, this.position.y + this.size.y / 2);
+        app.ctx.rotate(this.angle);     
+>>>>>>> f888effd443a588da3d123140ed5d8a409bfc065
         app.ctx.restore();*/
 
         app.ctx.drawImage(this.img, this.position.x - this.size.x/2, this.position.y - this.size.y/2, this.size.x, this.size.y);
@@ -125,7 +131,13 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             y : Math.floor(Math.random() * (app.GAME_HEIGHT - this.size.y))
         }
         
-        
+        this.previousColor = this.img.src;
+
+        while(this.img.src == this.previousColor)
+        {
+            var newColorIndex = Math.floor((Math.random()*4));
+            this.img.src = app.images["player" + (this.playerID+1)][newColorIndex];
+        }
     }
 
     Player.prototype.collisions = function()
