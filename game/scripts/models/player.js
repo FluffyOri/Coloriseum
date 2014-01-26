@@ -12,9 +12,10 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         this.sightRadius = 75;
         this.img         = new Image();
         this.viewActive  = true;
-        this.alive    = true;
-        this.life     = params.life || 2;
-        this.frag     = 0;
+        this.alive       = true;
+        this.wanted      = false;
+        this.life        = params.life || 2;
+        this.frag        = 0;
 
         switch(this.playerID)
         {
@@ -90,12 +91,18 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
     Player.prototype.render = function()
     {
         app.ctx.drawImage(this.img, this.position.x, this.position.y, this.size.x, this.size.y);
+
+        if(this.wanted)
+        {
+            app.ctx.strokeStyle = "rgb(255,0,0)";
+            app.ctx.strokeRect(this.position.x, this.position.y, this.size.x, this.size.y);
+        }
         if (this.viewActive)
         {
             app.ctx.fillStyle = this.pat;
             app.ctx.beginPath();
             app.ctx.arc(this.position.x+this.size.x/2, this.position.y+this.size.y/2, this.sightRadius, 0, Math.PI*2);
-            app.ctx.fill();            
+            app.ctx.fill();
         }
     }
 
@@ -112,6 +119,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
     Player.prototype.shoot = function()
     {
         var speedVector = null;
+
         if (this.gamepad.axes[2] > 0.2 || this.gamepad.axes[2] < -0.5)
         {
             speedVector = { x : this.gamepad.axes[2], y : this.gamepad.axes[3] };
@@ -136,7 +144,8 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
 
     Player.prototype.die = function()
     {
-        this.position = {
+        this.position = 
+        {
             x : Math.floor(Math.random() * (app.GAME_WIDTH - this.size.x)),
             y : Math.floor(Math.random() * (app.GAME_HEIGHT - this.size.y))
         }
@@ -174,9 +183,14 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         }
     }
 
-    Player.prototype.addFrag = function()
+    Player.prototype.addFrag = function(x)
     {
-        this.frag++;
+        this.frag += x;
+    }
+
+    Player.prototype.addLife = function()
+    {
+        this.life++;
     }
 
     return Player;

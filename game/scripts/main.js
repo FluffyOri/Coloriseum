@@ -29,6 +29,10 @@ require(   ["app", "world",
 
 				//call gameloop
 				gameloop();
+
+				setTimeout(popGeneralEvent, 5000);
+
+				setTimeout(checkGameOver,5000);
 			}
 
 			function gameloop()
@@ -88,6 +92,49 @@ require(   ["app", "world",
 							console.log("Player " + playerNumber + " Wins !!!");
 						}
 					}
+				}
+			}
+
+			function popGeneralEvent()
+			{
+				// var whichRandomEvent = Math.floor(Math.random()*3 + 1);
+				var whichRandomEvent = 1;
+
+				if (whichRandomEvent === 1)
+				{
+					var whichPlayerIsWanted = Math.floor(Math.random()*4);
+
+					if (whichPlayerIsWanted >= world.findGameObjectsWithTag("player").length)
+					{
+						whichPlayerIsWanted = Math.floor(Math.random());
+					}
+
+					world.findGameObjectsWithTag("player")[whichPlayerIsWanted].wanted = true;
+
+					setTimeout(cancelWanted, 10000);
+				}
+
+				if (whichRandomEvent === 2)
+				{
+
+				}
+
+				if (whichRandomEvent === 3)
+				{
+
+				}
+
+				if (whichRandomEvent === 4)
+				{
+
+				}
+			}
+
+			function cancelWanted()
+			{
+				for (var i = 0; i < world.findGameObjectsWithTag("player").length; i++)
+				{
+					world.findGameObjectsWithTag("player")[i].wanted = false;
 				}
 			}
 
