@@ -26,20 +26,59 @@ require(   ["app", "world",
 			{
 				stats.begin();
 
-			    cleanCanvas();
-			    gamepadManager.run();
-			    world.run();
-			    garbageCollector();
+				if (!app.paused)
+				{
+			    	cleanCanvas();
+			    	gamepadManager.run();
+			    	world.run();
+			    	garbageCollector();
+			    	checkGameOver();
 
-				stats.end();
+					stats.end();
 
-				requestAnimationFrame(gameloop);
+					requestAnimationFrame(gameloop);
+				}
 			}
 
 			function cleanCanvas()
 			{
 				app.ctx.fillStyle = "black"; 
 				app.ctx.fillRect(0,0,app.GAME_WIDTH,app.GAME_HEIGHT);	
+			}
+
+			function checkGameOver() 
+			{
+				if (app.gameMode === "limited_life")
+				{
+					if (app.stillAlive === 1)
+					{
+						for (var i = 0; world.findGameObjectsWithTag("player").length; i++)
+						{
+							if (world.findGameObjectsWithTag("player")[i])
+							{
+								if (world.findGameObjectsWithTag("player")[i].alive)
+								{
+									var playerNumber = i + 1;
+									app.paused = true;
+									console.log("Player " + playerNumber + " Wins !!!");
+								}
+							}
+						}
+					}
+				}
+
+				if (app.gameMode === "scoring")
+				{
+					for (var i = 0; i < world.findGameObjectsWithTag("player").length; i++)
+					{
+						if (world.findGameObjectsWithTag("player")[i].frag === app.neededScore)
+						{
+							var playerNumber = i + 1;
+							app.paused = true;
+							console.log("Player " + playerNumber + " Wins !!!");
+						}
+					}
+				}
 			}
 
 			init();

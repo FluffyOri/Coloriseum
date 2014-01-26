@@ -10,7 +10,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         this.shotTime = new Date().getTime();
         this.delay    = 250;
         this.alive    = true;
-        this.life     = params.life || 1;
+        this.life     = params.life || 2;
         this.frag     = 0;
         this.img      = new Image();
 
@@ -144,11 +144,11 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             if (this.life > 1)
             {
                 this.life--;
-
             }
             else
             {
                 this.alive = false;
+                app.stillAlive--;
             }
         }
     }

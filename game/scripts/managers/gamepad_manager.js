@@ -1,4 +1,4 @@
-define(["world", "player"], function(world, Player) {
+define(["world", "player", "app"], function(world, Player, app) {
     return {
         gamepads: [],
 
@@ -45,6 +45,8 @@ define(["world", "player"], function(world, Player) {
                         size : { x : 32, y : 32 },
                         gamepad : this.gamepads[i]
                     }));
+
+                    app.stillAlive++;
                 }
             }
         },
