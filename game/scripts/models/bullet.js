@@ -36,7 +36,7 @@ define(["world", "app"], function(world, app) {
 
     Bullet.prototype.collision = function()
     {
-        var cases = world.findGameObjectsWithTag("case");
+/*        var cases = world.findGameObjectsWithTag("case");
         for (var i = 0; i < cases.length; i++)
         {
             if (cases[i].tileNum > 4 && cases[i].tileNum < 9)
@@ -47,7 +47,7 @@ define(["world", "app"], function(world, app) {
                     this.die();               
                 }                
             }
-        }
+        }*/
 
         var that = this;
         world.forAll(world.gameObjects, function(object) {

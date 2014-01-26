@@ -1,8 +1,8 @@
 require(   ["app", "world", 
-			"debug_manager", "gamepad_manager", "garbage_collector", "map_manager", "collectible",
+			"debug_manager", "gamepad_manager", "garbage_collector", "map_manager", "collectible", "uirender",
 			"stats", "jquery"], 
 	function(app,   world,  
-			 debugManager,    gamepadManager,    garbageCollector,    mapManager, Collectible) {
+			 debugManager,    gamepadManager,    garbageCollector,    mapManager,     Collectible,    UiRender) {
 
 		$(function() {
 			function init ()
@@ -12,8 +12,6 @@ require(   ["app", "world",
 				app.ctx           = app.canvas.getContext("2d");
 				app.canvas.width  = app.GAME_WIDTH;
 				app.canvas.height = app.GAME_HEIGHT;
-
-				app.gameMode = window.localStorage["gameMode"];
 
 				for (var i = 0; i < app.buffers.length; i++)
 				{
@@ -28,20 +26,21 @@ require(   ["app", "world",
 				debugManager();
 				mapManager();
 
+
+
+
 				popCollectible();
 
 				var kaoune = document.getElementById("start");
 				kaoune.style.zIndex = 1;
 
 				setTimeout(function(){kaoune.style.zIndex = -1;},3000);
-				
 				//call gameloop
 				gameloop();
 
-				setTimeout(popGeneralEvent, 5000);
+				setTimeout(popGeneralEvent, 30000);
 
-				setTimeout(checkGameOver,5000);
-
+				setTimeout(checkGameOver,8000);
 			}
 
 			function popCollectible()
@@ -70,7 +69,6 @@ require(   ["app", "world",
 			    	world.run();
 			    	garbageCollector();
 			    	checkGameOver();
-			    	setLifeOnUI();
 
 					stats.end();
 
@@ -80,7 +78,7 @@ require(   ["app", "world",
 
 			function cleanCanvas()
 			{
-				app.ctx.fillStyle = "rgb(139,139,131)";
+				app.ctx.fillStyle = "grey"; 
 				app.ctx.fillRect(0,0,app.GAME_WIDTH,app.GAME_HEIGHT);
 				app.ctx.drawImage(app.buffers[4].canvas, 0, 0);
 			}
@@ -119,15 +117,17 @@ require(   ["app", "world",
 					{
 						if (world.findGameObjectsWithTag("player")[i].frag === app.neededScore)
 						{
+
 							var playerNumber = i + 1;
 							app.paused = true;
+							
 							var kaoune = document.getElementById("gameover");
 							kaoune.style.zIndex = 1;
 
 							console.log("Player " + playerNumber + " Wins !!!");
-							app.ctx.font = '60pt Calibri';
-							app.ctx.fillStyle = "rgb(223,223,223)";					
-      						app.ctx.fillText("Player " + playerNumber + " Wins !!!", 300, 150);
+							app.ctx.font = '40pt Calibri';
+							app.ctx.fillStyle = "rgb(223,223,223)";
+      						app.ctx.fillText("Game Over !", 375, 150);
 						}
 					}
 				}
@@ -147,8 +147,7 @@ require(   ["app", "world",
 						whichPlayerIsWanted = Math.floor(Math.random());
 					}
 
-					if (world.findGameObjectsWithTag("player")[whichPlayerIsWanted])
-						world.findGameObjectsWithTag("player")[whichPlayerIsWanted].wanted = true;
+					world.findGameObjectsWithTag("player")[whichPlayerIsWanted].wanted = true;
 
 					//wanted during 10 sec
 					setTimeout(cancelWanted, 10000);
@@ -178,29 +177,6 @@ require(   ["app", "world",
 				}
 
 				setTimeout(popGeneralEvent, 30000);
-			}
-
-			function setLifeOnUI()
-			{
-				for (var i = 0; i < world.findGameObjectsWithTag("player").length; i++)
-				{
-					if (i === 0)
-					{
-						app.hp[0].innerHTML = "LIFE : " + world.findGameObjectsWithTag("player")[i].life;
-					}
-					if (i === 1)
-					{
-						app.hp[1].innerHTML = "LIFE : " + world.findGameObjectsWithTag("player")[i].life;
-					}
-					if (i === 2)
-					{
-						app.hp[2].innerHTML = "LIFE : " + world.findGameObjectsWithTag("player")[i].life;
-					}
-					if (i === 3)
-					{
-						app.hp[3].innerHTML = "LIFE : " + world.findGameObjectsWithTag("player")[i].life;
-					}
-				}
 			}
 
 			init();

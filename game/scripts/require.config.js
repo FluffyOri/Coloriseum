@@ -15,6 +15,7 @@ require.config({
 		'utils' : 'managers/utils',
 		'bullet' : 'models/bullet',
 		'case' : 'models/case',
+		'collectible' : 'models/collectible',
 		'player' : 'models/player',
 		'world' : 'models/world',
 	},

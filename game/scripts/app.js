@@ -1,6 +1,6 @@
 define({
     gameMode          : "limited_life",
-    neededScore       : 4,
+    neededScore       : 15,
 	canvas            : null,
 	ctx               : null,
 	GAME_WIDTH        : 1024,
@@ -8,6 +8,9 @@ define({
 	SCENE_WIDTH       : 1024,
 	SCENE_HEIGHT      : 768,
     CASE_SIZE         : 64,
+    collectibleTag    : "collectible",
+    collectibleSize   : { x : 64, y : 64 },
+    collectibleImg    : "medias/collectible.png",
     playerSpeed       : 3,
     bulletSpeed       : 9,
     stillAlive        : 0,

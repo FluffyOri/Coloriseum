@@ -13,13 +13,17 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         this.img         = new Image();
         this.viewActive  = true;
         this.alive       = true;
-        this.life        = params.life || 2;
+        this.life        = params.life || 5;
         this.frag        = 0;
         this.buttonDown  = false;
         this.wanted      = false;
 
         this.activeFiltersPatterns = [];
         this.unlockedColors = [];
+/*        this.addFilterPattern(0);
+        this.addFilterPattern(1);
+        this.addFilterPattern(2);
+        this.addFilterPattern(3);*/
 
         switch(this.playerID)
         {
