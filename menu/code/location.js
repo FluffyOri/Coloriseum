@@ -15,3 +15,11 @@ function Retour()   {
 window.location="index.html";
 
 }
+
+function Confirmation()   {
+
+
+
+
+	
+}
