@@ -9,7 +9,7 @@ define({
 	SCENE_HEIGHT  : 768,
     CASE_SIZE     : 64,
     playerSpeed   : 3,
-    bulletSpeed   : 1,
+    bulletSpeed   : 8,
     stillAlive        : 0,
     paused            : false,
     topLeftAnchor     : { x : 0,    y : 0 },

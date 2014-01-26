@@ -34,25 +34,19 @@ define(["world", "app"], function(world, app) {
         this.dead = true;
     }
 
-
-    Bullet.prototype.getCurrentCaseColor = function()
+    Bullet.prototype.collision = function()
     {
         var cases = world.findGameObjectsWithTag("case");
         for (var i = 0; i < cases.length; i++)
         {
-            if (this.position.x + this.size.x > cases[i].position.x && this.position.x + this.size.x < cases[i].position.x + cases[i].size.x &&
-                this.position.y + this.size.y > cases[i].position.y && this.position.y + this.size.y < cases[i].position.y + cases[i].size.y)
+            if (cases[i].tileNum > 4 && cases[i].tileNum < 9)
             {
-                return cases[i].tileNum-1;
+                if (this.position.x + this.size.x >= cases[i].position.x && this.position.x <= cases[i].position.x + cases[i].size.x &&
+                    this.position.y + this.size.y >= cases[i].position.y && this.position.y <= cases[i].position.y + cases[i].size.y)
+                {
+                    this.die();               
+                }                
             }
-        }
-    }
-
-    Bullet.prototype.collision = function()
-    {
-        if (this.getCurrentCaseColor() > 3 && this.getCurrentCaseColor() < 8)
-        {
-            this.die()
         }
 
         var that = this;
