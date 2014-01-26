@@ -71,13 +71,16 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         
         this.angle = Math.atan2(vec2.x, vec2.y);
 
+        
+        /*app.ctx.beginPath();
 
-/*        app.ctx.save();
-        app.ctx.translate(this.position.x + this.size.x / 2, this.position.y + this.size.y / 2);
-        app.ctx.rotate(this.angle);     
+        app.ctx.save();
+        app.ctx.translate(this.position.x + this.size.x/2, this.position.y + this.size.y/2);
+        app.ctx.rotate(this.angle);
+        // app.ctx.fillRect(this.position.x, this.position.y, this.size.x, this.size.y);
         app.ctx.restore();*/
-        //app.ctx.fillRect(this.position.x, this.position.y, this.size.x, this.size.y);
-        app.ctx.drawImage(this.img, this.position.x, this.position.y, this.size.x, this.size.y);
+
+        app.ctx.drawImage(this.img, this.position.x - this.size.x/2, this.position.y - this.size.y/2, this.size.x, this.size.y);
     }
 
     Player.prototype.move = function()
