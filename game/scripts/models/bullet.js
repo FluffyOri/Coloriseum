@@ -40,16 +40,16 @@ define(["world", "app"], function(world, app) {
         world.forAll(world.gameObjects, function(object) {
             if (object)
             {
-            if (that.position.x + that.size.x > object.position.x && that.position.x < object.position.x + object.size.x &&
-                that.position.y + that.size.y > object.position.y && that.position.y < object.position.y + object.size.y)
-            {
-                if (object.tag === "player" && object.playerID != that.ownerID)
+                if (that.position.x + that.size.x > object.position.x && that.position.x < object.position.x + object.size.x &&
+                    that.position.y + that.size.y > object.position.y && that.position.y < object.position.y + object.size.y)
                 {
-                    object.die();
-                    that.die();
-                    world.gameObjects[that.ownerID].addFrag();
+                    if (object.tag === "player" && object.playerID != that.ownerID)
+                    {
+                        object.die();
+                        that.die();
+                        world.gameObjects[that.ownerID].addFrag();
+                    }
                 }
-            }
             }
         });
     }

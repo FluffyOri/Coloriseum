@@ -65,7 +65,7 @@ require(   ["app", "world",
 				// 			}
 				// 		}
 				// 	}
-				}
+				// }
 
 				if (app.gameMode === "scoring")
 				{
