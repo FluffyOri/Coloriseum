@@ -48,23 +48,23 @@ require(   ["app", "world",
 
 			function checkGameOver() 
 			{
-				if (app.gameMode === "limited_life")
-				{
-					if (app.stillAlive === 1)
-					{
-						for (var i = 0; world.findGameObjectsWithTag("player").length; i++)
-						{
-							if (world.findGameObjectsWithTag("player")[i])
-							{
-								if (world.findGameObjectsWithTag("player")[i].alive)
-								{
-									var playerNumber = i + 1;
-									app.paused = true;
-									console.log("Player " + playerNumber + " Wins !!!");
-								}
-							}
-						}
-					}
+				// if (app.gameMode === "limited_life")
+				// {
+				// 	if (app.stillAlive === 1)
+				// 	{
+				// 		for (var i = 0; world.findGameObjectsWithTag("player").length; i++)
+				// 		{
+				// 			if (world.findGameObjectsWithTag("player")[i])
+				// 			{
+				// 				if (world.findGameObjectsWithTag("player")[i].alive)
+				// 				{
+				// 					var playerNumber = i + 1;
+				// 					app.paused = true;
+				// 					console.log("Player " + playerNumber + " Wins !!!");
+				// 				}
+				// 			}
+				// 		}
+				// 	}
 				}
 
 				if (app.gameMode === "scoring")

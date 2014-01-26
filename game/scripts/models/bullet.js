@@ -46,6 +46,7 @@ define(["world", "app"], function(world, app) {
                 if (object.tag === "player" && object.playerID != that.ownerID)
                 {
                     object.die();
+                    that.die();
                     world.gameObjects[that.ownerID].addFrag();
                 }
             }
