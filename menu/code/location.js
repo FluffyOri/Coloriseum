@@ -1,4 +1,4 @@
-function Startloc() {
+function join() {
 
 window.location="start.html";
 
