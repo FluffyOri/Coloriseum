@@ -8,7 +8,7 @@ define({
     CASE_SIZE     : 64,
     playerSpeed   : 3,
     bulletSpeed   : 8,
-    gameMode          : "scoring",
+    gameMode          : "limited_life",
     neededScore       : 100,
     stillAlive        : 0,
     paused            : false,

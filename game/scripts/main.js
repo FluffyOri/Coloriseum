@@ -71,6 +71,9 @@ require(   ["app", "world",
 									var playerNumber = i + 1;
 									app.paused = true;
 									console.log("Player " + playerNumber + " Wins !!!");
+									app.ctx.font = '40pt Calibri';
+									app.ctx.fillStyle = "rgb(223,223,223)";
+      								app.ctx.fillText("Game Over !", 375, 150);
 								}
 							}
 						}
@@ -86,6 +89,9 @@ require(   ["app", "world",
 							var playerNumber = i + 1;
 							app.paused = true;
 							console.log("Player " + playerNumber + " Wins !!!");
+							app.ctx.font = '40pt Calibri';
+							app.ctx.fillStyle = "rgb(223,223,223)";
+      						app.ctx.fillText("Game Over !", 375, 150);
 						}
 					}
 				}
