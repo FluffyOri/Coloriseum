@@ -1,4 +1,4 @@
-define(["app", "utils", "world", "bullet", "player", "main"], function(app, utils, world, Bullet, popCollectible) {
+define(["app", "utils", "world"], function(app, utils, world) {
 
 	var Collectible = function(params)
 	{

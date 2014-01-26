@@ -13,6 +13,32 @@ canvas
     top: 5%;
     border: 2px solid gold;
 }
+
+
+#gameover
+{
+    position:absolute;
+    left:320px;
+    top:350px;
+    width: 942px;
+    height: 108px;
+    z-index: -1;
+    background-image: url(../medias/event_game_over.png);
+    background-image: fixed;
+}
+
+#start
+{
+    position:absolute;
+    left:320px;
+    top:350px;
+    width: 942px;
+    height: 108px;
+    z-index: -1;
+    background-image: url(../medias/event_start.png);
+    background-image: fixed;
+}
+
 #left-border  {
 position: absolute;
 margin:0;

@@ -1,8 +1,8 @@
 require(   ["app", "world", 
-			"debug_manager", "gamepad_manager", "garbage_collector", "map_manager",
+			"debug_manager", "gamepad_manager", "garbage_collector", "map_manager", "collectible",
 			"stats", "jquery"], 
 	function(app,   world,  
-			 debugManager,    gamepadManager,    garbageCollector,    mapManager) {
+			 debugManager,    gamepadManager,    garbageCollector,    mapManager, Collectible) {
 
 		$(function() {
 			function init ()
@@ -14,7 +14,6 @@ require(   ["app", "world",
 				app.canvas.height = app.GAME_HEIGHT;
 
 				app.gameMode = window.localStorage["gameMode"];
-				console.log(app.gameMode)
 
 				for (var i = 0; i < app.buffers.length; i++)
 				{
@@ -29,13 +28,35 @@ require(   ["app", "world",
 				debugManager();
 				mapManager();
 
+				popCollectible();
 
+				var kaoune = document.getElementById("start");
+				kaoune.style.zIndex = 1;
+
+				setTimeout(function(){kaoune.style.zIndex = -1;},3000);
+				
 				//call gameloop
 				gameloop();
 
 				setTimeout(popGeneralEvent, 5000);
 
 				setTimeout(checkGameOver,5000);
+
+			}
+
+			function popCollectible()
+			{
+				var collectibleTag = app.collectibleTag;
+				var collectibleSize = app.collectibleSize;
+				var collectibleImg = app.collectibleImg;
+				world.gameObjects.push(new Collectible(
+					collectibleTag,
+					collectibleSize,
+					collectibleImg
+	            //    tag : "collectible",
+	             //   size : { x : 64, y : 51},
+	               // img : "medias/collectible.png",
+            	));
 			}
 
 			function gameloop()
@@ -77,11 +98,14 @@ require(   ["app", "world",
 								{
 									var playerNumber = i + 1;
 									app.paused = true;
+
+									var kaoune = document.getElementById("gameover");
+									kaoune.style.zIndex = 1;
+
 									console.log("Player " + playerNumber + " Wins !!!");
-									app.ctx.font = '40pt Calibri';
+									app.ctx.font = '60pt Calibri';
 									app.ctx.fillStyle = "rgb(223,223,223)";
-      								app.ctx.fillText("Game Over !", 375, 150);
-      								app.ctx.fillText("Player " + playerNumber + " Wins !!!", 325, 225);
+      								app.ctx.fillText("Player " + playerNumber + " Wins !!!" , 300, 150);
 								}
 							}
 						}
@@ -96,11 +120,13 @@ require(   ["app", "world",
 						{
 							var playerNumber = i + 1;
 							app.paused = true;
+							var kaoune = document.getElementById("gameover");
+							kaoune.style.zIndex = 1;
+
 							console.log("Player " + playerNumber + " Wins !!!");
-							app.ctx.font = '40pt Calibri';
-							app.ctx.fillStyle = "rgb(223,223,223)";
-      						app.ctx.fillText("Game Over !", 375, 150);      						
-      						app.ctx.fillText("Player " + playerNumber + " Wins !!!", 325, 225);
+							app.ctx.font = '60pt Calibri';
+							app.ctx.fillStyle = "rgb(223,223,223)";					
+      						app.ctx.fillText("Player " + playerNumber + " Wins !!!", 300, 150);
 						}
 					}
 				}
