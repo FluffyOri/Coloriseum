@@ -30,7 +30,7 @@ require(   ["app", "world",
 				//call gameloop
 				gameloop();
 
-				setTimeout(popGeneralEvent, 5000);
+				setTimeout(popGeneralEvent, 30000);
 
 				setTimeout(checkGameOver,5000);
 			}
@@ -117,6 +117,7 @@ require(   ["app", "world",
 
 					world.findGameObjectsWithTag("player")[whichPlayerIsWanted].wanted = true;
 
+					//wanted during 10 sec
 					setTimeout(cancelWanted, 10000);
 				}
 
@@ -142,6 +143,8 @@ require(   ["app", "world",
 				{
 					world.findGameObjectsWithTag("player")[i].wanted = false;
 				}
+
+				setTimeout(popGeneralEvent, 30000);
 			}
 
 			init();
