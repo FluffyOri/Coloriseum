@@ -50,10 +50,10 @@ define(["world", "app"], function(world, app) {
 
     Bullet.prototype.collision = function()
     {
-/*        if (this.getCurrentCaseColor() > 3 && this.getCurrentCaseColor() < 8)
+        if (this.getCurrentCaseColor() > 3 && this.getCurrentCaseColor() < 8)
         {
             this.die()
-        }*/
+        }
 
         var that = this;
         world.forAll(world.gameObjects, function(object) {
