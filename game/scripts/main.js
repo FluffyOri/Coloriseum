@@ -30,7 +30,7 @@ require(   ["app", "world",
 				//call gameloop
 				gameloop();
 
-				setTimeout(popGeneralEvent, 30000);
+				setTimeout(popGeneralEvent, 5000);
 
 				setTimeout(checkGameOver,5000);
 			}
@@ -55,7 +55,7 @@ require(   ["app", "world",
 
 			function cleanCanvas()
 			{
-				app.ctx.fillStyle = "grey"; 
+				app.ctx.fillStyle = "rgb(139,139,131)";
 				app.ctx.fillRect(0,0,app.GAME_WIDTH,app.GAME_HEIGHT);
 				app.ctx.drawImage(app.buffers[4].canvas, 0, 0);
 			}

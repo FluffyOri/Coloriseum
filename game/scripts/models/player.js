@@ -8,19 +8,18 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         this.speed       = app.playerSpeed;
         this.gamepad     = params.gamepad;
         this.shotTime    = new Date().getTime();
-        this.delay       = 250;
-        this.sightRadius = 75;
+        this.delay       = 400;
+        this.sightRadius = 85;
         this.img         = new Image();
-        this.viewActive = true;
-        this.alive      = true;
-        this.life       = params.life || 2;
-        this.frag       = 0;
-        this.buttonDown = false;
-        this.wanted     = false;
+        this.viewActive  = true;
+        this.alive       = true;
+        this.life        = params.life || 2;
+        this.frag        = 0;
+        this.buttonDown  = false;
+        this.wanted      = false;
 
         this.activeFiltersPatterns = [];
         this.unlockedColors = [];
-        this.addFilterPattern(0);
 
         switch(this.playerID)
         {
@@ -112,11 +111,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
 
     Player.prototype.render = function()
     {
-        if(this.wanted)
-        {
-            app.ctx.strokeStyle = "rgb(255,0,0)";
-            app.ctx.strokeRect(this.position.x, this.position.y, this.size.x, this.size.y);
-        }
+        
         if (this.viewActive)
         {
             for (var i = 0; i < this.activeFiltersPatterns.length; i++)
@@ -125,17 +120,26 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             }
 
             app.ctx.beginPath();
-            app.ctx.strokeStyle = "black";
+            app.ctx.lineWidth   = 1;
+            app.ctx.strokeStyle = "rgba(0,0,0,0.5)";
             app.ctx.arc(this.position.x+this.size.x/2, this.position.y+this.size.y/2, this.sightRadius, 0, Math.PI*2);
             app.ctx.stroke();
 
         }
 
-        if (this.getCurrentCaseColor() != this.idColor && this.getCurrentCaseColor() != this.idColor+4 || this.viewActive ||
+        if (this.getCurrentCaseColor() != this.idColor && this.getCurrentCaseColor() != this.idColor+4 ||
            ((this.gamepad.axes[2] > 0.4 || this.gamepad.axes[2] < -0.4) || (this.gamepad.axes[3] > 0.4 || this.gamepad.axes[3] < -0.4)) ||
            ((this.gamepad.axes[0] > 0.2 || this.gamepad.axes[0] < -0.2) || (this.gamepad.axes[1] > 0.2 || this.gamepad.axes[1] < -0.2))) 
         {
             app.ctx.drawImage(this.img, this.position.x, this.position.y, this.size.x, this.size.y);
+        }
+
+        if(this.wanted)
+        {
+            app.ctx.beginPath();
+            app.ctx.lineWidth   = 3;
+            app.ctx.strokeStyle = "rgb(255,0,0)";
+            app.ctx.strokeRect(this.position.x - 3, this.position.y, this.size.x + 6, this.size.y);
         }
     }
 
