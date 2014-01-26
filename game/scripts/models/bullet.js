@@ -41,7 +41,7 @@ define(["world", "app"], function(world, app) {
             if (that.position.x + that.size.x > object.position.x && that.position.x < object.position.x + object.size.x &&
                 that.position.y + that.size.y > object.position.y && that.position.y < object.position.y + object.size.y)
             {
-                if (object.tag === "player" && object.playerID != that.ownerID)
+                if (object.tag === "player" && object.id != that.ownerID)
                 {
                     object.die();
                 }

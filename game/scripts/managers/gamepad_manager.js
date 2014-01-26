@@ -45,7 +45,6 @@ define(["world", "player"], function(world, Player) {
                         size : { x : 32, y : 32 },
                         gamepad : this.gamepads[i]
                     }));
-                    console.table(world.gameObjects);
                 }
             }
         },

@@ -5,18 +5,26 @@ define({
 	GAME_HEIGHT   : 768,
 	SCENE_WIDTH   : 1024,
 	SCENE_HEIGHT  : 768,
+    CASE_SIZE     : 64,
     playerSpeed   : 3,
     bulletSpeed   : 8,
     topLeftAnchor     : { x : 0,    y : 0 },
     topRightAnchor    : { x : 1024, y : 0 },
     bottomLeftAnchor  : { x : 0,    y : 768 },
     bottomRightAnchor : { x : 1024, y : 768 },
-    colors : {
-        purple : "rgb(66, 27, 121)",
-        yellow : "rgb(255, 246, 133)",
-        pink   : "rgb(240, 103, 167)",
-        green  : "rgb(60, 187, 149)"
-    },
+    colors : [
+        "rgb(66, 27, 121)",
+        "rgb(255, 246, 133)",
+        "rgb(240, 103, 167)",
+        "rgb(60, 187, 149)"
+    ],
+    buffers : [
+        { canvas : null, ctx : null },
+        { canvas : null, ctx : null },
+        { canvas : null, ctx : null },
+        { canvas : null, ctx : null },
+        { canvas : null, ctx : null }
+    ],
     images : {
         player1 : [
             "medias/ship1_violet.png",
@@ -42,6 +50,16 @@ define({
             "medias/ship4_rose.png",
             "medias/ship4_vert.png"
         ],
-
+        tiles : [
+            null,
+            "medias/case_violet.jpg",
+            "medias/case_jaune.jpg",
+            "medias/case_rose.jpg",
+            "medias/case_vert.jpg",
+            "medias/mur_violet.jpg",
+            "medias/mur_jaune.jpg",
+            "medias/mur_rose.jpg",
+            "medias/mur_vert.jpg"
+        ]
     }
 });

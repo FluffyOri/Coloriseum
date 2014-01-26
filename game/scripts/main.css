@@ -7,4 +7,5 @@ canvas
     display: block;
     margin: auto;
     margin-top: 15px;
+    border: 2px solid gold;
 }
