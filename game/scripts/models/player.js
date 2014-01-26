@@ -15,6 +15,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         this.alive    = true;
         this.life     = params.life || 2;
         this.frag     = 0;
+        this.buttonDown = false;
 
         switch(this.playerID)
         {
@@ -65,6 +66,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
                 this.move();
                 this.collisions();
                 this.render();
+                this.controls();
 
                 if (this.shotTime + this.delay < new Date().getTime())
                 {                
@@ -76,20 +78,31 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
 
     Player.prototype.controls = function()
     {
-        if (this.gamepad.buttons[10] > 0)
+        if (this.gamepad.buttons[10] > 0 && !this.buttonDown)
         {
-            
+            this.viewActive = !this.viewActive;
+            this.buttonDown = true;
+        }
+        
+        if (this.gamepad.buttons[10] === 0 && this.buttonDown)
+        {
+            this.buttonDown = false;
         }
     }
 
-    Player.prototype.setPattern = function(pattern)
+    Player.prototype.setPattern = function()
     {
         this.pat = app.ctx.createPattern(app.buffers[this.idColor].canvas,"no-repeat");
     }
 
     Player.prototype.render = function()
     {
-        app.ctx.drawImage(this.img, this.position.x, this.position.y, this.size.x, this.size.y);
+        if (this.getCurrentCaseColor() != this.idColor && this.getCurrentCaseColor() != this.idColor+4 || this.viewActive ||
+           ((this.gamepad.axes[2] > 0.3 || this.gamepad.axes[2] < -0.3) || (this.gamepad.axes[3] > 0.3 || this.gamepad.axes[3] < -0.3)) ||
+           ((this.gamepad.axes[0] > 0.2 || this.gamepad.axes[0] < -0.2) || (this.gamepad.axes[1] > 0.2 || this.gamepad.axes[1] < -0.2))) 
+        {
+            app.ctx.drawImage(this.img, this.position.x, this.position.y, this.size.x, this.size.y);
+        }
         if (this.viewActive)
         {
             app.ctx.fillStyle = this.pat;
@@ -109,14 +122,27 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             this.position.y += this.gamepad.axes[1] * this.speed;
     }
 
+    Player.prototype.getCurrentCaseColor = function()
+    {
+        var cases = world.findGameObjectsWithTag("case");
+        for (var i = 0; i < cases.length; i++)
+        {
+            if (this.position.x + this.size.x > cases[i].position.x && this.position.x < cases[i].position.x + cases[i].size.x &&
+                this.position.y + this.size.y > cases[i].position.y && this.position.y < cases[i].position.y + cases[i].size.y)
+            {
+                return cases[i].tileNum-1;
+            }
+        }
+    }
+
     Player.prototype.shoot = function()
     {
         var speedVector = null;
-        if (this.gamepad.axes[2] > 0.2 || this.gamepad.axes[2] < -0.5)
+        if (this.gamepad.axes[2] > 0.3 || this.gamepad.axes[2] < -0.3)
         {
             speedVector = { x : this.gamepad.axes[2], y : this.gamepad.axes[3] };
         }
-        if (this.gamepad.axes[3] > 0.2 || this.gamepad.axes[3] < -0.5)
+        if (this.gamepad.axes[3] > 0.3 || this.gamepad.axes[3] < -0.3)
         {
             speedVector = { x : this.gamepad.axes[2], y : this.gamepad.axes[3] };  
         }
@@ -146,6 +172,8 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         while(this.img.src == this.previousColor)
         {
             var newColorIndex = Math.floor((Math.random()*4));
+            this.idColor = newColorIndex;
+            this.setPattern();
             this.img.src = app.images["player" + (this.playerID+1)][newColorIndex];
         }
 
@@ -172,6 +200,14 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             this.position.x = this.lastPos.x;
             this.position.y = this.lastPos.y;
         }
+
+/*        var currentCaseColor = this.getCurrentCaseColor();
+        console.log(currentCaseColor)
+        if (currentCaseColor > 3 && currentCaseColor < 8)
+        {
+            this.position.x = this.lastPos.x;
+            this.position.y = this.lastPos.y;
+        }*/
     }
 
     Player.prototype.addFrag = function()

@@ -1,12 +1,14 @@
 define(["world", "player", "app"], function(world, Player, app) {
     return {
         gamepads: [],
+        delay : 1000,
+        lastTick : new Date().getTime(),
 
         init: function() {
           var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
         },
 
-        pollGamepads : function() {
+        pollGamepads : function() { //isHeavy
             var rawGamepads = navigator.webkitGetGamepads && navigator.webkitGetGamepads();
             for (var i = 0; i < rawGamepads.length; i++)
             {
@@ -17,13 +19,17 @@ define(["world", "player", "app"], function(world, Player, app) {
 
         run : function() {
             this.pollGamepads();
-            this.checkGamepadConnect();
+
+            if (this.lastTick + this.delay < new Date().getTime())
+            { 
+                this.checkGamepadConnect();
+                this.lastTick = new Date().getTime();
+            }
             
         },
 
         checkGamepadConnect : function()
         {
-
             for (var i = 0; i < this.gamepads.length; i++)
             {
                 var playerExist = false;
