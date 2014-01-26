@@ -13,7 +13,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         this.img         = new Image();
         this.viewActive  = true;
         this.alive       = true;
-        this.life        = params.life || 2;
+        this.life        = params.life || 5;
         this.frag        = 0;
         this.buttonDown  = false;
         this.wanted      = false;

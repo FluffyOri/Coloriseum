@@ -1,6 +1,6 @@
 define({
     gameMode          : "scoring",
-    neededScore       : 4,
+    neededScore       : 15,
 	canvas            : null,
 	ctx               : null,
 	GAME_WIDTH        : 1024,
