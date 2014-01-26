@@ -1,8 +1,9 @@
 define(["world", "player", "app"], function(world, Player, app) {
     return {
         gamepads: [],
-        delay : 1000,
+        delay : 5000,
         lastTick : new Date().getTime(),
+        pucelle : true,
 
         init: function() {
           var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
@@ -19,6 +20,11 @@ define(["world", "player", "app"], function(world, Player, app) {
 
         run : function() {
             this.pollGamepads();
+            if (this.pucelle)
+            {
+                this.checkGamepadConnect();
+                this.pucelle = false;
+            }
 
             if (this.lastTick + this.delay < new Date().getTime())
             { 

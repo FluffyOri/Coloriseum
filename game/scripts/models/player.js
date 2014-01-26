@@ -18,6 +18,10 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         this.buttonDown = false;
         this.wanted     = false;
 
+        this.activeFiltersPatterns = [];
+        this.unlockedColors = [];
+        this.addFilterPattern(0);
+
         switch(this.playerID)
         {
             case 0:
@@ -58,8 +62,6 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             break;
         }
 
-        this.setPattern(app.buffers[this.idColor].canvas);
-
         this.update = function()
         {
             if (this.alive)
@@ -91,20 +93,25 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         }
     }
 
-    Player.prototype.setPattern = function()
+    Player.prototype.addFilterPattern = function(filterColor)
     {
-        this.pat = app.ctx.createPattern(app.buffers[this.idColor].canvas,"no-repeat");
+        if (this.unlockedColors.indexOf(filterColor) < 0)
+        {
+            this.unlockedColors.push(filterColor);
+            this.activeFiltersPatterns.push(app.ctx.createPattern(app.buffers[filterColor].canvas,"no-repeat"));            
+        }
+    }
+
+    Player.prototype.renderFilter = function(patNum)
+    {
+        app.ctx.fillStyle = this.activeFiltersPatterns[patNum];
+        app.ctx.beginPath();
+        app.ctx.arc(this.position.x+this.size.x/2, this.position.y+this.size.y/2, this.sightRadius, 0, Math.PI*2);
+        app.ctx.fill();
     }
 
     Player.prototype.render = function()
     {
-        if (this.getCurrentCaseColor() != this.idColor && this.getCurrentCaseColor() != this.idColor+4 || this.viewActive ||
-           ((this.gamepad.axes[2] > 0.3 || this.gamepad.axes[2] < -0.3) || (this.gamepad.axes[3] > 0.3 || this.gamepad.axes[3] < -0.3)) ||
-           ((this.gamepad.axes[0] > 0.2 || this.gamepad.axes[0] < -0.2) || (this.gamepad.axes[1] > 0.2 || this.gamepad.axes[1] < -0.2))) 
-        {
-            app.ctx.drawImage(this.img, this.position.x, this.position.y, this.size.x, this.size.y);
-        }
-
         if(this.wanted)
         {
             app.ctx.strokeStyle = "rgb(255,0,0)";
@@ -112,12 +119,23 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         }
         if (this.viewActive)
         {
-            app.ctx.fillStyle = this.pat;
+            for (var i = 0; i < this.activeFiltersPatterns.length; i++)
+            {
+                this.renderFilter(i);
+            }
+
             app.ctx.beginPath();
             app.ctx.strokeStyle = "black";
             app.ctx.arc(this.position.x+this.size.x/2, this.position.y+this.size.y/2, this.sightRadius, 0, Math.PI*2);
             app.ctx.stroke();
-            app.ctx.fill();
+
+        }
+
+        if (this.getCurrentCaseColor() != this.idColor && this.getCurrentCaseColor() != this.idColor+4 || this.viewActive ||
+           ((this.gamepad.axes[2] > 0.4 || this.gamepad.axes[2] < -0.4) || (this.gamepad.axes[3] > 0.4 || this.gamepad.axes[3] < -0.4)) ||
+           ((this.gamepad.axes[0] > 0.2 || this.gamepad.axes[0] < -0.2) || (this.gamepad.axes[1] > 0.2 || this.gamepad.axes[1] < -0.2))) 
+        {
+            app.ctx.drawImage(this.img, this.position.x, this.position.y, this.size.x, this.size.y);
         }
     }
 
@@ -136,8 +154,8 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         var cases = world.findGameObjectsWithTag("case");
         for (var i = 0; i < cases.length; i++)
         {
-            if (this.position.x + this.size.x > cases[i].position.x && this.position.x < cases[i].position.x + cases[i].size.x &&
-                this.position.y + this.size.y > cases[i].position.y && this.position.y < cases[i].position.y + cases[i].size.y)
+            if (this.position.x + this.size.x > cases[i].position.x && this.position.x + this.size.x < cases[i].position.x + cases[i].size.x &&
+                this.position.y + this.size.y > cases[i].position.y && this.position.y + this.size.y < cases[i].position.y + cases[i].size.y)
             {
                 return cases[i].tileNum-1;
             }
@@ -147,11 +165,11 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
     Player.prototype.shoot = function()
     {
         var speedVector = null;
-        if (this.gamepad.axes[2] > 0.3 || this.gamepad.axes[2] < -0.3)
+        if (this.gamepad.axes[2] > 0.4 || this.gamepad.axes[2] < -0.4)
         {
             speedVector = { x : this.gamepad.axes[2], y : this.gamepad.axes[3] };
         }
-        if (this.gamepad.axes[3] > 0.3 || this.gamepad.axes[3] < -0.3)
+        if (this.gamepad.axes[3] > 0.4 || this.gamepad.axes[3] < -0.4)
         {
             speedVector = { x : this.gamepad.axes[2], y : this.gamepad.axes[3] };  
         }
@@ -183,7 +201,6 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         {
             var newColorIndex = Math.floor((Math.random()*4));
             this.idColor = newColorIndex;
-            this.setPattern();
             this.img.src = app.images["player" + (this.playerID+1)][newColorIndex];
         }
 
@@ -212,7 +229,6 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         }
 
 /*        var currentCaseColor = this.getCurrentCaseColor();
-        console.log(currentCaseColor)
         if (currentCaseColor > 3 && currentCaseColor < 8)
         {
             this.position.x = this.lastPos.x;
