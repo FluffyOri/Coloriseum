@@ -82,6 +82,11 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         }
     }
 
+    Player.prototype.setPattern = function(pattern)
+    {
+        this.pat = app.ctx.createPattern(app.buffers[this.idColor].canvas,"no-repeat");
+    }
+
     Player.prototype.render = function()
     {
         app.ctx.drawImage(this.img, this.position.x, this.position.y, this.size.x, this.size.y);
