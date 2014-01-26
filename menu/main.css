@@ -35,6 +35,16 @@ color:white;
 
 }
 
+embed  {
+
+opacity:0.5;
+position:absolute;
+left:83%;
+bottom:-4%;
+
+
+}
+
 .CadreNoir  {
 
 background-color: black;
