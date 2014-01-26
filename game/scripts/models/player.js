@@ -127,7 +127,7 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
 
         }
 
-        if (this.getCurrentCaseColor() != this.idColor && this.getCurrentCaseColor() != this.idColor+4 ||
+        if (this.getCurrentCaseColor() != this.idColor && this.getCurrentCaseColor() != this.idColor+4 || this.viewActive ||
            ((this.gamepad.axes[2] > 0.4 || this.gamepad.axes[2] < -0.4) || (this.gamepad.axes[3] > 0.4 || this.gamepad.axes[3] < -0.4)) ||
            ((this.gamepad.axes[0] > 0.2 || this.gamepad.axes[0] < -0.2) || (this.gamepad.axes[1] > 0.2 || this.gamepad.axes[1] < -0.2))) 
         {
@@ -158,8 +158,8 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
         var cases = world.findGameObjectsWithTag("case");
         for (var i = 0; i < cases.length; i++)
         {
-            if (this.position.x + this.size.x > cases[i].position.x && this.position.x + this.size.x < cases[i].position.x + cases[i].size.x &&
-                this.position.y + this.size.y > cases[i].position.y && this.position.y + this.size.y < cases[i].position.y + cases[i].size.y)
+            if ((this.position.x + this.size.x > cases[i].position.x && this.position.x < cases[i].position.x + cases[i].size.x) &&
+                (this.position.y + this.size.y > cases[i].position.y && this.position.y < cases[i].position.y + cases[i].size.y))
             {
                 return cases[i].tileNum-1;
             }
@@ -232,11 +232,18 @@ define(["app", "utils", "world", "bullet"], function(app, utils, world, Bullet) 
             this.position.y = this.lastPos.y;
         }
 
-/*        var currentCaseColor = this.getCurrentCaseColor();
-        if (currentCaseColor > 3 && currentCaseColor < 8)
+/*        var cases = world.findGameObjectsWithTag("case");
+        for (var i = 0; i < cases.length; i++)
         {
-            this.position.x = this.lastPos.x;
-            this.position.y = this.lastPos.y;
+            if (cases[i].tileNum > 3 && cases[i].tileNum < 8)
+            {
+                if (this.position.x + this.size.x >= cases[i].position.x && this.position.x <= cases[i].position.x + cases[i].size.x &&
+                    this.position.y + this.size.y >= cases[i].position.y && this.position.y <= cases[i].position.y + cases[i].size.y)
+                {
+                    this.position.x = this.lastPos.x;
+                    this.position.y = this.lastPos.y;                
+                }                
+            }
         }*/
     }
 
